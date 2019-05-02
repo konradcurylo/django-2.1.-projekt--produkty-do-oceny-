@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for towar in towary %}
+
+
+<div class="jumbotron">
+
+
+<div class="row">
+<div class="col-2" onclick="window.location='{% url 'detail' towar.id %}';" style="cursor:pointer">
+<img src="{{towar.image.url}}" class="img-fluid"/>
+  </div>
+  <div class="col-6" onclick="window.location='{% url 'detail' towar.id %}';" style="cursor:pointer">
+    <a href="{}"></a><h1> {{towar.title}} </h1></a>
+    <p>{{towar.body}}</p>
+  </div>
+<div class="col-4">
+    <a href="javascript:{document.getElementById('upvote{{towar.id}}').submit()}"><button class="btn btn-primary btn-lg btn-block">Zagłosuj {{towar.votes_total}}</button></a>
+  </div>
+  </div>
+</div>
+  <form id="upvote{{ towar.id }}" action="{% url 'upvote' towar.id %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" >
+  </form>
+
+{% endfor %}
+
+{% endblock %}

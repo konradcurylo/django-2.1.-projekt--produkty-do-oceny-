@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-2">
+
+    <img src="{{ towar.icon.url }}" class="img-fluid" alt="">
+    </div>
+    <div class="col-10">
+      <a href="{{ towar.url }}"><h1>{{towar.title}}</h1></a>
+      </div>
+</div>
+<div class="row">
+  <div class="col-8">
+   <img src="{{ towar.image.url }}" class="img-fluid" alt="">
+    </div>
+    <div class="col-4">
+    <a href="javascript:{document.getElementById('upvote').submit()}"><button class="btn btn-primary btn-lg btn-block">Zagłosuj {{towar.votes_total}}</button></a>
+      </div>
+
+
+      <div class="row">
+        <div class="col-4">
+          <h5>Okazja dodana przez {{ towar.hunt_user.username }}</h5>
+         </div>
+          <div class="col-4 text-right">
+          <h5> dodane: {{ towar.date_pretty }}</h5>
+      </div>
+
+      <div class="row">
+        <div class="col-10">
+             <h7>  {{ towar.body }}   </h7>
+         </div>
+      </div>
+
+      <form id="upvote" action="{% url 'upvote' towar.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" >
+      </form>
+{% endblock %}

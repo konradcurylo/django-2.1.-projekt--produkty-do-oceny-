@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if error %}
+{{error}}
+<br>
+<br>
+{% endif %}
+
+
+<h1>Dodaj własną okazję.</h1>
+
+<form class="" action="{% url 'stworz' %}" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+Tytuł:
+<br />
+<input type="text" name="title" value="">
+<br/>
+Treść:
+<br/>
+<input type="textbox" name="body" value="">
+<br/>
+URL:
+<br />
+<input type="text" name="url" value="">
+<br/>
+<br/>
+Ikona:
+<br/>
+<input type="file" name="icon" value="">
+
+<br/><br/>
+Zdjęcie:
+
+<br />
+<input type="file" name="image" value="">
+<br/>
+<br/>
+
+<input type="submit" class="btn btn=primary" value="Dodaj produkt">
+</form>
+{% endblock %}
